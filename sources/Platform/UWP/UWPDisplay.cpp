@@ -102,7 +102,7 @@ DisplayMode UWPDisplay::GetDisplayMode() const
     return {}; //todo
 }
 
-vector<DisplayMode> UWPDisplay::GetSupportedDisplayModes() const
+std::vector<DisplayMode> UWPDisplay::GetSupportedDisplayModes() const
 {
     return {}; //todo
 }

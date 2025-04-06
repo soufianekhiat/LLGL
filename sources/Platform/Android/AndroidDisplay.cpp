@@ -126,9 +126,9 @@ DisplayMode AndroidDisplay::GetDisplayMode() const
     return displayMode;
 }
 
-vector<DisplayMode> AndroidDisplay::GetSupportedDisplayModes() const
+std::vector<DisplayMode> AndroidDisplay::GetSupportedDisplayModes() const
 {
-    vector<DisplayMode> displayModes;
+    std::vector<DisplayMode> displayModes;
 
     //TODO
     displayModes.push_back(GetDisplayMode());

@@ -13,7 +13,7 @@
 #include "../VKPtr.h"
 #include <vulkan/vulkan.h>
 #include <cstdint>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <memory>
 
 #ifdef LLGL_DEBUG
@@ -140,10 +140,10 @@ class VKDeviceMemory
         std::uint32_t                           memoryTypeIndex_        = 0;
 
         VkDeviceSize                            maxNewBlockSize_        = 0;
-        vector<VKDeviceMemoryRegionPtr>         blocks_;
+        std::vector<VKDeviceMemoryRegionPtr>    blocks_;
 
         VkDeviceSize                            maxFragmentedBlockSize_ = 0;
-        vector<VKDeviceMemoryRegionPtr>         fragmentedBlocks_;
+        std::vector<VKDeviceMemoryRegionPtr>    fragmentedBlocks_;
 
 };
 

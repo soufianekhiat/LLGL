@@ -7,7 +7,7 @@
 
 #include "D3D12Types.h"
 #include <stdexcept>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL

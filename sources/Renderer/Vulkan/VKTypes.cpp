@@ -8,7 +8,7 @@
 #include "VKTypes.h"
 #include "../../Core/Assertion.h"
 #include <stdexcept>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL

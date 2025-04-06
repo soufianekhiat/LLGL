@@ -10,7 +10,7 @@
 
 
 #include "../Vulkan.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -21,7 +21,7 @@ namespace LLGL
 bool VKLoadInstanceExtensions(VkInstance instance);
 
 // Loads all Vulkan extensions via the specified VkDevice handle.
-bool VKLoadDeviceExtensions(VkDevice device, const vector<const char*>& supportedExtensions);
+bool VKLoadDeviceExtensions(VkDevice device, const std::vector<const char*>& supportedExtensions);
 
 
 } // /namespace LLGL

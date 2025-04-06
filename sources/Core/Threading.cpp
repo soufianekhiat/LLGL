@@ -8,7 +8,7 @@
 #include "Threading.h"
 #include <LLGL/Utils/ForRange.h>
 #include <thread>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <algorithm>
 
 
@@ -99,7 +99,7 @@ LLGL_EXPORT void DoConcurrentRange(
     else if (threadCount > 1)
     {
         /* Launch worker threads in dynamic array */
-        vector<std::thread> workers(threadCount);
+        std::vector<std::thread> workers(threadCount);
         DoConcurrentRangeInWorkerContainer(task, count, threadCount, workers.data());
     }
 }

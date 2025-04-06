@@ -12,7 +12,7 @@
 #include <LLGL/PipelineLayoutFlags.h>
 #include "../../../Core/FieldIterator.h"
 #include "../Vulkan.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <cstdint>
 
 
@@ -92,7 +92,7 @@ class VKShaderBindingLayout
 
     private:
 
-        vector<ModuleBinding> bindings_;
+        std::vector<ModuleBinding> bindings_;
 
 };
 

@@ -10,7 +10,7 @@
 
 
 #include "OpenGL.h"
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL

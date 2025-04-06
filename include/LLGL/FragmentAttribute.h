@@ -12,7 +12,7 @@
 #include <LLGL/Format.h>
 #include <LLGL/SystemValue.h>
 #include <LLGL/Container/StringLiteral.h>
-#include <LLGL/Container/String.h>
+#include <string>
 #include <cstdint>
 #include <utility>
 

@@ -11,11 +11,9 @@
 
 #include <LLGL/ImageFlags.h>
 #include <LLGL/TextureFlags.h>
-#include <LLGL/Container/String.h>
-#include <LLGL/Container/Vector.h>
+#include <string>
+#include <vector>
 
-using LLGL::vector;
-using LLGL::string;
 
 // Image reader class to load DXT compressed textures from file.
 class DDSImageReader
@@ -24,7 +22,7 @@ class DDSImageReader
     public:
 
         // Loads the specified DDS image from file.
-        bool LoadFromFile(const string& filename);
+        bool LoadFromFile(const std::string& filename);
 
         // Returns the image view for the specified MIP-map that can be passed to RenderSystem::CreateTexture or RenderSystem::WriteTexture.
         LLGL::ImageView GetImageView(std::uint32_t mipLevel = 0) const;
@@ -44,8 +42,8 @@ class DDSImageReader
         };
 
         LLGL::TextureDescriptor texDesc_;
-        vector<char>            data_;
-        vector<MipSection>      mips_;
+        std::vector<char>       data_;
+        std::vector<MipSection> mips_;
 
 };
 

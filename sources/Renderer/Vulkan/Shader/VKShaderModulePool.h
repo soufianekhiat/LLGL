@@ -11,7 +11,7 @@
 
 #include "../Vulkan.h"
 #include "../VKPtr.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -58,7 +58,7 @@ class VKShaderModulePool
 
     private:
 
-        vector<ShaderModulePermutation> permutations_;
+        std::vector<ShaderModulePermutation> permutations_;
 
 };
 

@@ -11,7 +11,7 @@
 
 #include <d3d12.h>
 #include <cstdint>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -28,7 +28,7 @@ void D3D12SetObjectNameSubscript(ID3D12Object* obj, const char* name, const char
 void D3D12SetObjectNameIndexed(ID3D12Object* obj, const char* name, std::uint32_t index);
 
 // Returns the debug name of the specified D3D device child.
-string D3D12GetObjectName(ID3D12Object* obj);
+std::string D3D12GetObjectName(ID3D12Object* obj);
 
 
 } // /namespace LLGL

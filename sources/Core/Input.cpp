@@ -11,7 +11,7 @@
 #include <LLGL/Canvas.h>
 #include <LLGL/Container/Strings.h>
 #include <string.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <algorithm>
 #include <memory>
 #include <math.h>
@@ -107,10 +107,10 @@ struct Input::Pimpl
     unsigned        anyKeyCount             = 0;
     UTF8String      chars;
 
-    vector<EventListenerSurfacePair<WindowEventListener>>
+    std::vector<EventListenerSurfacePair<WindowEventListener>>
                     windowEventListeners;
 
-    vector<EventListenerSurfacePair<CanvasEventListener>>
+    std::vector<EventListenerSurfacePair<CanvasEventListener>>
                     canvasEventListeners;
 
     void Reset()
@@ -361,7 +361,7 @@ Input::~Input()
 
 template <typename T>
 bool HasEventListenerForSurface(
-    vector<EventListenerSurfacePair<T>>&   eventListeners,
+    std::vector<EventListenerSurfacePair<T>>&   eventListeners,
     const Surface*                              surface)
 {
     return

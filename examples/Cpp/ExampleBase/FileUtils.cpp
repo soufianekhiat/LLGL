@@ -26,7 +26,7 @@
  * AssetReader class
  */
 
-AssetReader::AssetReader(vector<char>&& content) :
+AssetReader::AssetReader(std::vector<char>&& content) :
     content_ { std::move(content) }
 {
 }
@@ -54,19 +54,19 @@ AssetReader::operator bool () const
  * Global helper functions
  */
 
-static bool FileExists(const string& filename)
+static bool FileExists(const std::string& filename)
 {
     std::ifstream file{ filename };
     return file.good();
 };
 
-static string FindAssetFilename(const string& name)
+static std::string FindAssetFilename(const std::string& name)
 {
     #if defined LLGL_OS_IOS || defined LLGL_OS_MACOS
 
     // Returns filename for resource from main NSBundle
     const std::size_t subPathStart = name.find_last_of('/');
-    if (subPathStart != string::npos)
+    if (subPathStart != std::string::npos)
         return FindNSResourcePath(name.substr(subPathStart + 1));
     else
         return FindNSResourcePath(name);
@@ -88,11 +88,11 @@ static string FindAssetFilename(const string& name)
         return name;
 
     // Search file in known asset folders
-    const string assetsRoot = "../../Shared/Assets/";
+    const std::string assetsRoot = "../../Shared/Assets/";
 
     for (const char* folder : { "Textures", "Models", "Fonts"  })
     {
-        const string filename = assetsRoot + folder + "/" + name;
+        const std::string filename = assetsRoot + folder + "/" + name;
         if (FileExists(filename))
             return filename;
     }
@@ -102,10 +102,10 @@ static string FindAssetFilename(const string& name)
     return name;
 }
 
-vector<char> ReadAsset(const string& name, string* outFullPath)
+std::vector<char> ReadAsset(const std::string& name, std::string* outFullPath)
 {
     // Get full filename for asset
-    const string filename = FindAssetFilename(name);
+    const std::string filename = FindAssetFilename(name);
     if (outFullPath != nullptr)
         *outFullPath = filename;
 
@@ -120,7 +120,7 @@ vector<char> ReadAsset(const string& name, string* outFullPath)
     }
 
     // Read entire content of file into output container
-    vector<char> content;
+    std::vector<char> content;
 
     fseek(file, 0, SEEK_END);
     long fileSize = ftell(file);
@@ -145,7 +145,7 @@ vector<char> ReadAsset(const string& name, string* outFullPath)
     }
 
     // Read entire content of file stream into output container
-    return vector<char>
+    return std::vector<char>
     {
         std::istreambuf_iterator<char>{file},
         std::istreambuf_iterator<char>{}
@@ -159,29 +159,29 @@ static bool IsNewlineChar(char c)
     return (c == '\n' || c == '\r');
 }
 
-vector<string> ReadTextLines(const string& name, string* outFullPath)
+std::vector<std::string> ReadTextLines(const std::string& name, std::string* outFullPath)
 {
-    const vector<char> content = ReadAsset(name, outFullPath);
-    vector<string> lines;
+    const std::vector<char> content = ReadAsset(name, outFullPath);
+    std::vector<std::string> lines;
     if (!content.empty())
     {
-        vector<char>::const_iterator itStart = content.begin(), itEnd;
+        std::vector<char>::const_iterator itStart = content.begin(), itEnd;
         while ((itEnd = std::find_if(itStart, content.end(), IsNewlineChar)) != content.end())
         {
-            lines.push_back(string{ itStart, itEnd });
+            lines.push_back(std::string{ itStart, itEnd });
             if (itEnd != content.end() && *itEnd == '\r' && itEnd + 1 != content.end() && *(itEnd + 1) == '\n')
                 itStart = itEnd + 2;
             else
                 itStart = itEnd + 1;
         }
-        lines.push_back(string{ itStart, itEnd });
+        lines.push_back(std::string{ itStart, itEnd });
     }
     return lines;
 }
 
-string WriteFrameProfileToJson(const LLGL::FrameProfile& frameProfile)
+std::string WriteFrameProfileToJson(const LLGL::FrameProfile& frameProfile)
 {
-    string s;
+    std::string s;
 
     s += "{\n";
     s += "\t\"traceEvents\": [\n";
@@ -224,7 +224,7 @@ bool WriteFrameProfileToJsonFile(const LLGL::FrameProfile& frameProfile, const c
     std::ofstream file{ filename };
     if (file.good())
     {
-        string jsonContent = WriteFrameProfileToJson(frameProfile);
+        std::string jsonContent = WriteFrameProfileToJson(frameProfile);
         file.write(jsonContent.c_str(), jsonContent.size());
         return true;
     }

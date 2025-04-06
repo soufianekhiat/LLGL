@@ -10,7 +10,7 @@
 
 
 #include "VKPipelineLayoutPermutation.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -45,7 +45,7 @@ class VKPipelineLayoutPermutationPool
 
     private:
 
-        vector<VKPipelineLayoutPermutationSPtr> permutations_;
+        std::vector<VKPipelineLayoutPermutationSPtr> permutations_;
 
 };
 

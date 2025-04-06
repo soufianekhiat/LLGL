@@ -15,8 +15,8 @@
 #endif
 #include <LLGL/Utils/ForRange.h>
 #include <functional>
-#include <LLGL/Container/String.h>
-#include <LLGL/Container/Map.h>
+#include <string>
+#include <map>
 
 
 namespace LLGL
@@ -24,7 +24,7 @@ namespace LLGL
 
 
 // OpenGLES extension map type: Maps the extension name to boolean indicating whether or not the extension was loaded successully.
-using GLESExtensionMap = map<string, bool>;
+using GLESExtensionMap = std::map<std::string, bool>;
 
 /* --- Internal functions --- */
 
@@ -217,8 +217,8 @@ static GLESExtensionMap QuerySupportedOpenGLExtensions(bool coreProfile)
 // Global member to store if the extension have already been loaded
 static bool                     g_OpenGLESExtensionsLoaded = false;
 static GLESExtensionMap         g_OpenGLESExtensionsMap;
-static set<const char*>    g_supportedOpenGLESExtensions;
-static set<const char*>    g_loadedOpenGLESExtensions;
+static std::set<const char*>    g_supportedOpenGLESExtensions;
+static std::set<const char*>    g_loadedOpenGLESExtensions;
 
 static void EnableGLESExtension(GLExt ext, const char* name)
 {
@@ -371,12 +371,12 @@ bool AreOpenGLExtensionsLoaded()
     return g_OpenGLESExtensionsLoaded;
 }
 
-const set<const char*>& GetSupportedOpenGLExtensions()
+const std::set<const char*>& GetSupportedOpenGLExtensions()
 {
     return g_supportedOpenGLESExtensions;
 }
 
-const set<const char*>& GetLoadedOpenGLExtensions()
+const std::set<const char*>& GetLoadedOpenGLExtensions()
 {
     return g_loadedOpenGLESExtensions;
 }

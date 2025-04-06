@@ -12,7 +12,7 @@
 #import <Metal/Metal.h>
 
 #include "MTStagingBuffer.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -42,7 +42,7 @@ class MTStagingBufferPool
     private:
 
         id<MTLDevice>                   device_     = nil;
-        vector<MTStagingBuffer>    chunks_;
+        std::vector<MTStagingBuffer>    chunks_;
         std::size_t                     chunkIdx_   = 0;
         NSUInteger                      chunkSize_  = 0;
 

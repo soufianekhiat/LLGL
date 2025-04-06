@@ -12,7 +12,7 @@
 
 
 #include <LLGL/RenderSystemFlags.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -25,7 +25,7 @@ namespace StaticModules
 
 
 // Returns the list of staticly compiled modules.
-vector<string> GetStaticModules();
+std::vector<std::string> GetStaticModules();
 
 // Returns the renderer name of the specified module (module name "Direct3D11" may result in "Direct3D 11" for instance).
 const char* GetRendererName(const StringLiteral& moduleName);

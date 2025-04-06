@@ -9,7 +9,7 @@
 #define LLGL_GL_SHADER_SOURCE_PATCHER_H
 
 
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -52,7 +52,7 @@ class GLShaderSourcePatcher
     private:
 
         // Inserts the specified statement after the '#version'-directive and any previously inserted statement.
-        void InsertAfterVersionDirective(const string& statement);
+        void InsertAfterVersionDirective(const std::string& statement);
 
         // Finds and stores the source location of the entry point, i.e. points to the first character after of the entry point declaration "void main()".
         void CacheEntryPointSourceLocation();
@@ -62,9 +62,9 @@ class GLShaderSourcePatcher
 
     private:
 
-        string source_;
+        std::string source_;
         std::size_t statementInsertPos_ = 0;
-        std::size_t entryPointStartPos_ = string::npos;
+        std::size_t entryPointStartPos_ = std::string::npos;
 
 };
 

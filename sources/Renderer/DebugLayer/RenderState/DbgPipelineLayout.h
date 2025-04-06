@@ -11,7 +11,7 @@
 
 #include <LLGL/PipelineLayout.h>
 #include <LLGL/PipelineLayoutFlags.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -37,7 +37,7 @@ class DbgPipelineLayout final : public PipelineLayout
 
         PipelineLayout&                 instance;
         const PipelineLayoutDescriptor  desc;
-        string                          label;
+        std::string                     label;
 
 };
 

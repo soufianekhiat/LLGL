@@ -10,7 +10,7 @@
 #include "Win32Module.h"
 #include <stdio.h>
 #include <limits.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <algorithm>
 #include <LLGL/Utils/ForRange.h>
 
@@ -203,9 +203,9 @@ LLGL_EXPORT void DebugPuts(const char* text)
     }
 }
 
-static vector<void*> CaptureStackTraceAddresses(DWORD framesToSkip, DWORD framesToCapture)
+static std::vector<void*> CaptureStackTraceAddresses(DWORD framesToSkip, DWORD framesToCapture)
 {
-    vector<void*> backTrace;
+    std::vector<void*> backTrace;
     backTrace.resize(framesToCapture);
 
     const WORD capturedFrames = CaptureStackBackTrace(framesToSkip, framesToCapture, backTrace.data(), nullptr);
@@ -223,10 +223,10 @@ LLGL_EXPORT UTF8String DebugStackTrace(unsigned firstStackFrame, unsigned maxNum
     const       DWORD framesToCapture       = (std::max<DWORD>)(maxNumStackFrames, USHRT_MAX);
     const       DWORD framesToSkip          = (std::max<DWORD>)(0, firstStackFrame) + framesToAlwaysSkip;
 
-    vector<void*> framePointers = CaptureStackTraceAddresses(framesToSkip, framesToCapture);
+    std::vector<void*> framePointers = CaptureStackTraceAddresses(framesToSkip, framesToCapture);
 
     /* Build chart with columns for stack frames and source information */
-    vector<UTF8String> columns[2];
+    std::vector<UTF8String> columns[2];
     UTF8String cells[2];
     std::size_t columnWidths[2] = { 0, 0 };
 

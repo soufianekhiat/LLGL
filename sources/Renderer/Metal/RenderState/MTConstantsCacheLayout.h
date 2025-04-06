@@ -16,7 +16,7 @@
 #include <LLGL/Container/ArrayView.h>
 #include <LLGL/Container/SmallVector.h>
 #include <cstdint>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -93,7 +93,7 @@ class MTConstantsCacheLayout
         struct MTShaderBuffer
         {
             ConstantBuffer                      cbuffer;
-            vector<MTShaderBufferField>    fields;
+            std::vector<MTShaderBufferField>    fields;
 
             static bool EqualsFields(const MTShaderBuffer& lhs, const MTShaderBuffer& rhs);
         };
@@ -101,7 +101,7 @@ class MTConstantsCacheLayout
     private:
 
         static MTShaderBuffer* FindShaderBufferWithEqualField(
-            vector<MTShaderBuffer>&    shaderBuffers,
+            std::vector<MTShaderBuffer>&    shaderBuffers,
             std::size_t                     compareBufferIndex
         );
 
@@ -109,7 +109,7 @@ class MTConstantsCacheLayout
             long                            stage,
             NSUInteger                      index,
             NSUInteger                      size,
-            vector<MTShaderBuffer>&    shaderBuffers
+            std::vector<MTShaderBuffer>&    shaderBuffers
         );
 
         static bool AppendUniformByName(
@@ -117,14 +117,14 @@ class MTConstantsCacheLayout
             const UniformDescriptor&            uniformDesc,
             std::size_t                         uniformIndex,
             NSString*                           uniformName,
-            vector<MTShaderBuffer>&        shaderBuffers
+            std::vector<MTShaderBuffer>&        shaderBuffers
         );
 
         static void AppendUniformByDesc(
             const MTShaderReflectionArguments&  reflection,
             const UniformDescriptor&            uniformDesc,
             std::size_t                         uniformIndex,
-            vector<MTShaderBuffer>&        shaderBuffers
+            std::vector<MTShaderBuffer>&        shaderBuffers
         );
 
     private:

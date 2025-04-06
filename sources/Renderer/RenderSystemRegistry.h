@@ -11,7 +11,7 @@
 
 #include "RenderSystemModule.h"
 #include <LLGL/Container/SmallVector.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -56,7 +56,7 @@ class RenderSystemRegistry
 
     private:
 
-        vector<RenderSystemModulePtr>       modules_;
+        std::vector<RenderSystemModulePtr>  modules_;
         SmallVector<RenderSystemEntry, 1>   renderSystemEntries_;
 
 };

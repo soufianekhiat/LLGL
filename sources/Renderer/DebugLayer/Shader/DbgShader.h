@@ -11,7 +11,7 @@
 
 #include <LLGL/Shader.h>
 #include <LLGL/RenderingDebugger.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -58,7 +58,7 @@ class DbgShader final : public Shader
 
         Shader&                 instance;
         const ShaderDescriptor  desc;
-        string                  label;
+        std::string             label;
 
     private:
 
@@ -67,10 +67,10 @@ class DbgShader final : public Shader
 
     private:
 
-        string  vertexID_;
-        string  instanceID_;
-        bool    hasAnyOutputAttribs_    = false;
-        bool    hasReflectionFailed_    = false;
+        std::string             vertexID_;
+        std::string             instanceID_;
+        bool                    hasAnyOutputAttribs_    = false;
+        bool                    hasReflectionFailed_    = false;
 
 };
 

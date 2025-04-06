@@ -34,7 +34,7 @@ class UWPDisplay final : public Display
         bool SetDisplayMode(const DisplayMode& displayMode) override;
         DisplayMode GetDisplayMode() const override;
 
-        vector<DisplayMode> GetSupportedDisplayModes() const override;
+        std::vector<DisplayMode> GetSupportedDisplayModes() const override;
 
 };
 

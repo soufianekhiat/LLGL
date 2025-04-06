@@ -45,9 +45,9 @@ HRESULT DXLoadDxcompilerInterface()
     return S_OK;
 }
 
-vector<LPCWSTR> DXGetDxcCompilerArgs(int flags)
+std::vector<LPCWSTR> DXGetDxcCompilerArgs(int flags)
 {
-    vector<LPCWSTR> dxArgs;
+    std::vector<LPCWSTR> dxArgs;
 
     if ((flags & ShaderCompileFlags::Debug) != 0)
         dxArgs.push_back(DXC_ARG_DEBUG);

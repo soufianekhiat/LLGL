@@ -77,7 +77,7 @@ private:
         vertexFormat.SetStride(sizeof(TexturedVertex));
 
         // Load 3D models
-        vector<TexturedVertex> vertices;
+        std::vector<TexturedVertex> vertices;
         meshScene   = LoadObjModel(vertices, "Portal-Scene.obj");
         meshPortal  = LoadObjModel(vertices, "Portal-Stencil.obj");
         meshObject1 = LoadObjModel(vertices, "WiredBox.obj");

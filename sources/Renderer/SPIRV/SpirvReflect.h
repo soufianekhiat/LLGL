@@ -11,8 +11,8 @@
 
 #include "SpirvIterator.h"
 #include "SpirvModule.h"
-#include <LLGL/Container/Vector.h>
-#include <LLGL/Container/Map.h>
+#include <vector>
+#include <map>
 
 
 namespace LLGL
@@ -58,7 +58,7 @@ class SpirvNameDecorations
 
     private:
 
-        vector<const char*> names_;
+        std::vector<const char*> names_;
 
 };
 
@@ -112,7 +112,7 @@ class SpirvReflect
             spv::ImageFormat            imageFormat = spv::ImageFormatMax;  // Format of an image type.
 
             // Struct
-            vector<SpvRecordField> fields;                             // List of struct fields
+            std::vector<SpvRecordField> fields;                             // List of struct fields
 
             bool                        sign        = false;                // Specifies whether or not this is a signed type (only for OpTypeInt).
             bool                        readonly    = false;                // Specifies whether this type was marked with the 'readonly'-specifier.
@@ -166,7 +166,7 @@ class SpirvReflect
         struct SpvBlock
         {
             const char*                 name    = nullptr;
-            vector<SpvBlockField>  fields;
+            std::vector<SpvBlockField>  fields;
         };
 
     public:
@@ -180,25 +180,25 @@ class SpirvReflect
     public:
 
         // Returns the container that maps a SPIR-V ID to its type definition.
-        inline const map<spv::Id, SpvType>& GetTypes() const
+        inline const std::map<spv::Id, SpvType>& GetTypes() const
         {
             return types_;
         }
 
         // Returns the container that maps a SPIR-V ID to its constant definition.
-        inline const map<spv::Id, SpvConstant>& GetConstants() const
+        inline const std::map<spv::Id, SpvConstant>& GetConstants() const
         {
             return constants_;
         }
 
         // Returns the container that maps a SPIR-V ID to its uniform definition.
-        inline const map<spv::Id, SpvUniform>& GetUniforms() const
+        inline const std::map<spv::Id, SpvUniform>& GetUniforms() const
         {
             return uniforms_;
         }
 
         // Returns the container that maps a SPIR-V ID to its varying definition.
-        inline const map<spv::Id, SpvVarying>& GetVaryings() const
+        inline const std::map<spv::Id, SpvVarying>& GetVaryings() const
         {
             return varyings_;
         }
@@ -207,7 +207,7 @@ class SpirvReflect
 
         struct SpvMemberNames
         {
-            vector<const char*> names;
+            std::vector<const char*> names;
         };
 
         struct SpvMemberDecoration
@@ -219,7 +219,7 @@ class SpirvReflect
 
         struct SpvDecorationCollection
         {
-            vector<SpvMemberDecoration> memberDecorations;
+            std::vector<SpvMemberDecoration> memberDecorations;
         };
 
     private:
@@ -270,12 +270,12 @@ class SpirvReflect
         std::uint32_t                               idBound_            = 0;
         SpirvNameDecorations                        names_;
 
-        map<spv::Id, SpvType>                  types_;
-        map<spv::Id, SpvConstant>              constants_;
-        map<spv::Id, SpvUniform>               uniforms_;
-        map<spv::Id, SpvVarying>               varyings_;
-        map<spv::Id, SpvMemberNames>           memberNames_;
-        map<spv::Id, SpvDecorationCollection>  decorations_;
+        std::map<spv::Id, SpvType>                  types_;
+        std::map<spv::Id, SpvConstant>              constants_;
+        std::map<spv::Id, SpvUniform>               uniforms_;
+        std::map<spv::Id, SpvVarying>               varyings_;
+        std::map<spv::Id, SpvMemberNames>           memberNames_;
+        std::map<spv::Id, SpvDecorationCollection>  decorations_;
         spv::Id                                     pushConstantTypeId_ = 0;
 
         std::uint32_t                               instrWordOffset_    = 0; // Word offset of current instruction

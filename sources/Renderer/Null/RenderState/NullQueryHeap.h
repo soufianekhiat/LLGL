@@ -10,8 +10,8 @@
 
 
 #include <LLGL/QueryHeap.h>
-#include <LLGL/Container/Vector.h>
-#include <LLGL/Container/String.h>
+#include <vector>
+#include <string>
 
 
 namespace LLGL
@@ -35,7 +35,7 @@ class NullQueryHeap final : public QueryHeap
 
     private:
 
-        string label_;
+        std::string label_;
 
 };
 

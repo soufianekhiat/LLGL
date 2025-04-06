@@ -11,7 +11,7 @@
 
 #include <LLGL/Buffer.h>
 #include <LLGL/Container/SmallVector.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -45,7 +45,7 @@ class DbgBuffer final : public Buffer
 
         Buffer&                 instance;
         const BufferDescriptor  desc;
-        string                  label;
+        std::string             label;
         std::uint64_t           elements    = 0;
         bool                    initialized = false;
 

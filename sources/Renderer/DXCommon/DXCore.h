@@ -15,8 +15,8 @@
 #include <LLGL/ImageFlags.h>
 #include "ComPtr.h"
 #include <dxgi.h>
-#include <LLGL/Container/String.h>
-#include <LLGL/Container/Vector.h>
+#include <string>
+#include <vector>
 #include <Windows.h>
 #include <d3dcommon.h>
 
@@ -49,16 +49,16 @@ void DXThrowIfInvocationFailed(HRESULT hr, const char* funcName, const char* con
 BOOL DXBoolean(bool value);
 
 // Returns the blob data as string.
-string DXGetBlobString(ID3DBlob* blob);
+std::string DXGetBlobString(ID3DBlob* blob);
 
 // Returns the blob data as char vector.
-vector<char> DXGetBlobData(ID3DBlob* blob);
+std::vector<char> DXGetBlobData(ID3DBlob* blob);
 
 // Returns a blob and copies the specified data into the blob.
 ComPtr<ID3DBlob> DXCreateBlob(const void* data, std::size_t size);
 
 // Returns a blob and copies the specified data into the blob.
-ComPtr<ID3DBlob> DXCreateBlob(const vector<char>& data);
+ComPtr<ID3DBlob> DXCreateBlob(const std::vector<char>& data);
 
 // Returns a blob that was created from a resource (*.rc files).
 ComPtr<ID3DBlob> DXCreateBlobFromResource(int resourceID);

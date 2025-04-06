@@ -30,7 +30,7 @@ LLGL_EXPORT UTF8String GetWorkingDir()
         #ifdef UNICODE
         std::wstring path;
         #else
-        string path;
+        std::string path;
         #endif
         path.resize(static_cast<std::size_t>(pathLen - 1));
         ::GetCurrentDirectory(pathLen, &path[0]);

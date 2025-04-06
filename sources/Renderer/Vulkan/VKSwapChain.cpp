@@ -18,7 +18,7 @@
 #include <LLGL/Platform/NativeHandle.h>
 #include <LLGL/Utils/ForRange.h>
 #include <limits.h>
-#include <LLGL/Container/Set.h>
+#include <set>
 
 
 namespace LLGL
@@ -650,7 +650,7 @@ void VKSwapChain::CreateResolutionDependentResources(const Extent2D& resolution)
     CreateSwapChainFramebuffers();
 }
 
-VkSurfaceFormatKHR VKSwapChain::PickSwapSurfaceFormat(const vector<VkSurfaceFormatKHR>& surfaceFormats) const
+VkSurfaceFormatKHR VKSwapChain::PickSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& surfaceFormats) const
 {
     if (surfaceFormats.empty())
         LLGL_TRAP("no Vulkan surface formats available");
@@ -667,7 +667,7 @@ VkSurfaceFormatKHR VKSwapChain::PickSwapSurfaceFormat(const vector<VkSurfaceForm
     return surfaceFormats.front();
 }
 
-VkPresentModeKHR VKSwapChain::PickSwapPresentMode(const vector<VkPresentModeKHR>& presentModes, std::uint32_t vsyncInterval) const
+VkPresentModeKHR VKSwapChain::PickSwapPresentMode(const std::vector<VkPresentModeKHR>& presentModes, std::uint32_t vsyncInterval) const
 {
     if (vsyncInterval == 0)
     {
@@ -690,7 +690,7 @@ VkExtent2D VKSwapChain::PickSwapExtent(const VkSurfaceCapabilitiesKHR& surfaceCa
     };
 }
 
-static vector<VkFormat> GetDepthStencilFormatPreference(int depthBits, int stencilBits)
+static std::vector<VkFormat> GetDepthStencilFormatPreference(int depthBits, int stencilBits)
 {
     if (stencilBits == 0)
     {
@@ -707,7 +707,7 @@ static vector<VkFormat> GetDepthStencilFormatPreference(int depthBits, int stenc
 
 VkFormat VKSwapChain::PickDepthStencilFormat(int depthBits, int stencilBits) const
 {
-    const vector<VkFormat> formats = GetDepthStencilFormatPreference(depthBits, stencilBits);
+    const std::vector<VkFormat> formats = GetDepthStencilFormatPreference(depthBits, stencilBits);
     return VKFindSupportedImageFormat(
         physicalDevice_,
         formats.data(),

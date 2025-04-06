@@ -18,22 +18,22 @@
 #include <LLGL/PipelineStateFlags.h>
 #include <LLGL/Constants.h>
 #include <LLGL/Utils/ForRange.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
 {
 
 
-static void AddToShaderArray(Shader* shader, vector<Shader*>& shaders)
+static void AddToShaderArray(Shader* shader, std::vector<Shader*>& shaders)
 {
     if (shader != nullptr)
         shaders.push_back(shader);
 }
 
-static vector<Shader*> GetShaderArrayFromDesc(const GraphicsPipelineDescriptor& desc)
+static std::vector<Shader*> GetShaderArrayFromDesc(const GraphicsPipelineDescriptor& desc)
 {
-    vector<Shader*> shaders;
+    std::vector<Shader*> shaders;
     shaders.reserve(5);
 
     AddToShaderArray(desc.vertexShader,         shaders);

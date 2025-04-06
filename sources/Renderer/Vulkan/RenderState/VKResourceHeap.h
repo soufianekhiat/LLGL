@@ -16,7 +16,7 @@
 #include "VKPipelineLayout.h"
 #include "../Vulkan.h"
 #include "../VKPtr.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -62,7 +62,7 @@ class VKResourceHeap final : public ResourceHeap
         }
 
         // Returns the list of native Vulkan descriptor sets.
-        inline const vector<VkDescriptorSet>& GetVkDescriptorSets() const
+        inline const std::vector<VkDescriptorSet>& GetVkDescriptorSets() const
         {
             return descriptorSets_;
         }
@@ -142,15 +142,15 @@ class VKResourceHeap final : public ResourceHeap
     private:
 
         VKPtr<VkDescriptorPool>             descriptorPool_;
-        vector<VkDescriptorSet>             descriptorSets_;
+        std::vector<VkDescriptorSet>        descriptorSets_;
         SmallVector<VKLayoutHeapBinding>    bindings_;
 
-        vector<VKPtr<VkImageView>>          imageViews_;
-        vector<VKPtr<VkBufferView>>         bufferViews_;
+        std::vector<VKPtr<VkImageView>>     imageViews_;
+        std::vector<VKPtr<VkBufferView>>    bufferViews_;
         std::uint32_t                       numImageViewsPerSet_    = 0;
         std::uint32_t                       numBufferViewsPerSet_   = 0;
 
-        vector<VKPipelineBarrierPtr>        barriers_;
+        std::vector<VKPipelineBarrierPtr>   barriers_;
 
 };
 

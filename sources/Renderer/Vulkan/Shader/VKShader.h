@@ -14,7 +14,7 @@
 #include "../Vulkan.h"
 #include "../VKPtr.h"
 #include "VKShaderBindingLayout.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <functional>
 
 
@@ -26,7 +26,7 @@ struct ShaderReflection;
 struct Extent3D;
 
 // Container type of 32-bit words for Vulkan shader binary code.
-using VKShaderCode = vector<std::uint32_t>;
+using VKShaderCode = std::vector<std::uint32_t>;
 
 struct VKUniformRange
 {
@@ -59,7 +59,7 @@ class VKShader final : public Shader
         */
         bool ReflectPushConstants(
             const ArrayView<UniformDescriptor>& inUniformDescs,
-            vector<VKUniformRange>&             outUniformRanges
+            std::vector<VKUniformRange>&        outUniformRanges
         ) const;
 
         void FillShaderStageCreateInfo(VkPipelineShaderStageCreateInfo& createInfo) const;
@@ -122,8 +122,8 @@ class VKShader final : public Shader
 
         struct VertexInputLayout
         {
-            vector<VkVertexInputBindingDescription>    bindingDescs;
-            vector<VkVertexInputAttributeDescription>  attribDescs;
+            std::vector<VkVertexInputBindingDescription>    bindingDescs;
+            std::vector<VkVertexInputAttributeDescription>  attribDescs;
         };
 
     private:
@@ -137,7 +137,7 @@ class VKShader final : public Shader
         LoadBinaryResult        loadBinaryResult_   = LoadBinaryResult::Undefined;
         VertexInputLayout       inputLayout_;
 
-        string                  entryPoint_;
+        std::string             entryPoint_;
         Report                  report_;
 
 };

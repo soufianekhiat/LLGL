@@ -90,10 +90,10 @@ void Window::EventListener::OnLostFocus(Window& sender)
 
 struct Window::Pimpl
 {
-    vector<std::shared_ptr<EventListener>>  eventListeners;
-    bool                                    quit            = false;
-    bool                                    focus           = false;
-    void*                                   userData        = nullptr;
+    std::vector<std::shared_ptr<EventListener>> eventListeners;
+    bool                                        quit            = false;
+    bool                                        focus           = false;
+    void*                                       userData        = nullptr;
 };
 
 

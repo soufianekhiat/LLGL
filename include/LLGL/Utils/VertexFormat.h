@@ -12,7 +12,7 @@
 #include <LLGL/Export.h>
 #include <LLGL/Constants.h>
 #include <LLGL/VertexAttribute.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <cstdint>
 #include <algorithm>
 
@@ -126,7 +126,7 @@ struct VertexFormat
     \brief Specifies the list of vertex attributes.
     \see AppendAttribute
     */
-    vector<VertexAttribute> attributes;
+    std::vector<VertexAttribute> attributes;
 };
 
 

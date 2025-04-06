@@ -7,7 +7,7 @@
 
 #include "DXTypes.h"
 #include <stdexcept>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL

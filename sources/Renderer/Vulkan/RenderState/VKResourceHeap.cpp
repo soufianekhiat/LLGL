@@ -23,7 +23,7 @@
 #include "../../../Core/Exception.h"
 #include <LLGL/ResourceHeapFlags.h>
 #include <LLGL/Utils/ForRange.h>
-#include <LLGL/Container/Map.h>
+#include <map>
 
 
 namespace LLGL
@@ -246,7 +246,7 @@ void VKResourceHeap::CreateDescriptorSets(
     VkDescriptorSetLayout   globalSetLayout)
 {
     /* Use copy of descritpor set layout for each descriptor set */
-    vector<VkDescriptorSetLayout> setLayouts;
+    std::vector<VkDescriptorSetLayout> setLayouts;
     setLayouts.resize(numDescriptorSets, globalSetLayout);
 
     /* Pre-allocate descriptor sets */

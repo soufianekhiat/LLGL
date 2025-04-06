@@ -17,7 +17,7 @@
 #include "../Shader/GLShaderBindingLayout.h"
 #include "../Shader/GLShaderPipeline.h"
 #include "../Shader/GLShader.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -82,11 +82,11 @@ class GLStatePool
 
     private:
 
-        vector<GLDepthStencilStateSPtr>    depthStencilStates_;
-        vector<GLRasterizerStateSPtr>      rasterizerStates_;
-        vector<GLBlendStateSPtr>           blendStates_;
-        vector<GLShaderBindingLayoutSPtr>  shaderBindingLayouts_;
-        vector<GLShaderPipelineSPtr>       shaderPipelines_;
+        std::vector<GLDepthStencilStateSPtr>    depthStencilStates_;
+        std::vector<GLRasterizerStateSPtr>      rasterizerStates_;
+        std::vector<GLBlendStateSPtr>           blendStates_;
+        std::vector<GLShaderBindingLayoutSPtr>  shaderBindingLayouts_;
+        std::vector<GLShaderPipelineSPtr>       shaderPipelines_;
 
 };
 

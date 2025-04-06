@@ -11,7 +11,7 @@
 
 #include <LLGL/ResourceHeap.h>
 #include <LLGL/ResourceHeapFlags.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -38,7 +38,7 @@ class DbgResourceHeap final : public ResourceHeap
 
         ResourceHeap&                   instance;
         const ResourceHeapDescriptor    desc;
-        string                          label;
+        std::string                     label;
         const std::uint32_t             numBindings = 1;
 
 };

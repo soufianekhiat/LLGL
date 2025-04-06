@@ -119,7 +119,7 @@ void VKThrowIfCreateFailed(const VkResult result, const char* interfaceName, con
 {
     if (LLGL_VK_FAILED(result))
     {
-        string s;
+        std::string s;
         {
             s = "failed to create instance of <";
             s += interfaceName;
@@ -135,9 +135,9 @@ void VKThrowIfCreateFailed(const VkResult result, const char* interfaceName, con
 }
 
 // see https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-versionnum
-string VKApiVersionToString(std::uint32_t version)
+std::string VKApiVersionToString(std::uint32_t version)
 {
-    string s;
+    std::string s;
 
     s += std::to_string(VK_VERSION_MAJOR(version));
     s += '.';
@@ -157,64 +157,64 @@ VkBool32 VKBoolean(bool value)
 /* ----- Query Functions ----- */
 
 
-vector<VkLayerProperties> VKQueryInstanceLayerProperties()
+std::vector<VkLayerProperties> VKQueryInstanceLayerProperties()
 {
     std::uint32_t propertyCount = 0;
     VkResult result = vkEnumerateInstanceLayerProperties(&propertyCount, nullptr);
     VKThrowIfFailed(result, "failed to query number of Vulkan instance layer properties");
 
-    vector<VkLayerProperties> properties(propertyCount);
+    std::vector<VkLayerProperties> properties(propertyCount);
     result = vkEnumerateInstanceLayerProperties(&propertyCount, properties.data());
     VKThrowIfFailed(result, "failed to query Vulkan instance layer properties");
 
     return properties;
 }
 
-vector<VkExtensionProperties> VKQueryInstanceExtensionProperties(const char* layerName)
+std::vector<VkExtensionProperties> VKQueryInstanceExtensionProperties(const char* layerName)
 {
     std::uint32_t propertyCount = 0;
     VkResult result = vkEnumerateInstanceExtensionProperties(layerName, &propertyCount, nullptr);
     VKThrowIfFailed(result, "failed to query number of Vulkan instance extension properties");
 
-    vector<VkExtensionProperties> properties(propertyCount);
+    std::vector<VkExtensionProperties> properties(propertyCount);
     result = vkEnumerateInstanceExtensionProperties(layerName, &propertyCount, properties.data());
     VKThrowIfFailed(result, "failed to query Vulkan instance extension properties");
 
     return properties;
 }
 
-vector<VkPhysicalDevice> VKQueryPhysicalDevices(VkInstance instance)
+std::vector<VkPhysicalDevice> VKQueryPhysicalDevices(VkInstance instance)
 {
     std::uint32_t deviceCount = 0;
     VkResult result = vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
     VKThrowIfFailed(result, "failed to query number of Vulkan physical devices");
 
-    vector<VkPhysicalDevice> devices(deviceCount);
+    std::vector<VkPhysicalDevice> devices(deviceCount);
     result = vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
     VKThrowIfFailed(result, "failed to query Vulkan physical devices");
 
     return devices;
 }
 
-vector<VkExtensionProperties> VKQueryDeviceExtensionProperties(VkPhysicalDevice device)
+std::vector<VkExtensionProperties> VKQueryDeviceExtensionProperties(VkPhysicalDevice device)
 {
     std::uint32_t propertyCount = 0;
     VkResult result = vkEnumerateDeviceExtensionProperties(device, nullptr, &propertyCount, nullptr);
     VKThrowIfFailed(result, "failed to query number of Vulkan device extension properties");
 
-    vector<VkExtensionProperties> properties(propertyCount);
+    std::vector<VkExtensionProperties> properties(propertyCount);
     result = vkEnumerateDeviceExtensionProperties(device, nullptr, &propertyCount, properties.data());
     VKThrowIfFailed(result, "failed to query Vulkan device extension properties");
 
     return properties;
 }
 
-vector<VkQueueFamilyProperties> VKQueryQueueFamilyProperties(VkPhysicalDevice device)
+std::vector<VkQueueFamilyProperties> VKQueryQueueFamilyProperties(VkPhysicalDevice device)
 {
     std::uint32_t queueFamilyCount = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
 
-    vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
     vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
 
     return queueFamilies;
@@ -259,7 +259,7 @@ VKQueueFamilyIndices VKFindQueueFamilies(VkPhysicalDevice device, const VkQueueF
 {
     VKQueueFamilyIndices indices;
 
-    const vector<VkQueueFamilyProperties> queueFamilies = VKQueryQueueFamilyProperties(device);
+    const std::vector<VkQueueFamilyProperties> queueFamilies = VKQueryQueueFamilyProperties(device);
 
     std::uint32_t i = 0;
     for (const VkQueueFamilyProperties& family : queueFamilies)

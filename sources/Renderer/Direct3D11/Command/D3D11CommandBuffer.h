@@ -14,7 +14,7 @@
 #include "../../DXCommon/DXCore.h"
 #include "../Direct3D11.h"
 #include <dxgi.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <cstddef>
 
 

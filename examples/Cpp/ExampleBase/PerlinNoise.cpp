@@ -99,13 +99,13 @@ float PerlinNoise::Noise(float x, float y, float z, std::uint32_t frequency, std
 }
 
 void PerlinNoise::GenerateBuffer(
-    vector<float>&  buffer,
-    std::uint32_t   width,
-    std::uint32_t   height,
-    std::uint32_t   depth,
-    std::uint32_t   frequency,
-    std::uint32_t   octaves,
-    float           persistence)
+    std::vector<float>& buffer,
+    std::uint32_t       width,
+    std::uint32_t       height,
+    std::uint32_t       depth,
+    std::uint32_t       frequency,
+    std::uint32_t       octaves,
+    float               persistence)
 {
     buffer.resize(static_cast<std::size_t>(width*height*depth));
 
@@ -136,13 +136,13 @@ void PerlinNoise::GenerateBuffer(
 }
 
 void PerlinNoise::GenerateBuffer(
-    vector<std::uint8_t>&   buffer,
-    std::uint32_t           width,
-    std::uint32_t           height,
-    std::uint32_t           depth,
-    std::uint32_t           frequency,
-    std::uint32_t           octaves,
-    float                   persistence)
+    std::vector<std::uint8_t>&  buffer,
+    std::uint32_t               width,
+    std::uint32_t               height,
+    std::uint32_t               depth,
+    std::uint32_t               frequency,
+    std::uint32_t               octaves,
+    float                       persistence)
 {
     buffer.resize(static_cast<std::size_t>(width*height*depth));
 

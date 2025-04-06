@@ -36,7 +36,7 @@ ComPtr<ID3D12DescriptorHeap> D3D12DescriptorHeap::CreateNativeOrThrow(ID3D12Devi
     HRESULT hr = device->CreateDescriptorHeap(&desc, IID_PPV_ARGS(descHeap.ReleaseAndGetAddressOf()));
     if (FAILED(hr))
     {
-        string contextInfo;
+        std::string contextInfo;
         if (const char* s = ToString(desc.Type))
         {
             contextInfo += "for heap type ";

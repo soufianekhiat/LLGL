@@ -16,9 +16,9 @@ namespace LLGL
 {
 
 
-static vector<NullBuffer*> GetNullBuffers(std::uint32_t numBuffers, Buffer* const * bufferArray)
+static std::vector<NullBuffer*> GetNullBuffers(std::uint32_t numBuffers, Buffer* const * bufferArray)
 {
-    vector<NullBuffer*> buffers;
+    std::vector<NullBuffer*> buffers;
     buffers.reserve(numBuffers);
     for_range(i, numBuffers)
         buffers.push_back(LLGL_CAST(NullBuffer*, bufferArray[i]));

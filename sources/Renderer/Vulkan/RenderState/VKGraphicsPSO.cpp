@@ -81,8 +81,8 @@ static void CreateTessellationState(
 static void CreateViewportState(
     const GraphicsPipelineDescriptor&   desc,
     VkPipelineViewportStateCreateInfo&  createInfo,
-    vector<VkViewport>&                 viewportsVK,
-    vector<VkRect2D>&                   scissorsVK)
+    std::vector<VkViewport>&            viewportsVK,
+    std::vector<VkRect2D>&              scissorsVK)
 {
     const std::size_t numViewports = desc.viewports.size();
     const std::size_t numScissors = desc.scissors.size();
@@ -234,7 +234,7 @@ static void CreateColorBlendAttachmentState(
 static void CreateColorBlendState(
     const BlendDescriptor&                              desc,
     VkPipelineColorBlendStateCreateInfo&                createInfo,
-    vector<VkPipelineColorBlendAttachmentState>&   attachmentStatesVK,
+    std::vector<VkPipelineColorBlendAttachmentState>&   attachmentStatesVK,
     std::uint32_t                                       numColorAttachments)
 {
     numColorAttachments = std::min(numColorAttachments, LLGL_MAX_NUM_COLOR_ATTACHMENTS);
@@ -275,7 +275,7 @@ static void CreateColorBlendState(
 static void CreateDynamicState(
     const GraphicsPipelineDescriptor&   desc,
     VkPipelineDynamicStateCreateInfo&   createInfo,
-    vector<VkDynamicState>&             dynamicStatesVK)
+    std::vector<VkDynamicState>&        dynamicStatesVK)
 {
     if (desc.viewports.empty())
         dynamicStatesVK.push_back(VK_DYNAMIC_STATE_VIEWPORT);
@@ -355,8 +355,8 @@ bool VKGraphicsPSO::CreateVkPipeline(
     CreateTessellationState(desc, tessellationState);
 
     /* Initialize viewport state */
-    vector<VkViewport> viewportsVK;
-    vector<VkRect2D> scissorsVK;
+    std::vector<VkViewport> viewportsVK;
+    std::vector<VkRect2D> scissorsVK;
     VkPipelineViewportStateCreateInfo viewportState;
     CreateViewportState(desc, viewportState, viewportsVK, scissorsVK);
 
@@ -375,12 +375,12 @@ bool VKGraphicsPSO::CreateVkPipeline(
     CreateDepthStencilState(desc, depthStencilState);
 
     /* Initialize color-blend state */
-    vector<VkPipelineColorBlendAttachmentState> attachmentStatesVK;
+    std::vector<VkPipelineColorBlendAttachmentState> attachmentStatesVK;
     VkPipelineColorBlendStateCreateInfo colorBlendState;
     CreateColorBlendState(desc.blend, colorBlendState, attachmentStatesVK, renderPass.GetNumColorAttachments());
 
     /* Initialize dynamic state */
-    vector<VkDynamicState> dynamicStatesVK;
+    std::vector<VkDynamicState> dynamicStatesVK;
     VkPipelineDynamicStateCreateInfo dynamicState;
     CreateDynamicState(desc, dynamicState, dynamicStatesVK);
 

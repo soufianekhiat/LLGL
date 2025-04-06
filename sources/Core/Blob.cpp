@@ -27,8 +27,8 @@ struct Blob::Pimpl
 
 struct InternalStringBlob final : Blob::Pimpl
 {
-    InternalStringBlob(string&& str) :
-        str { std::forward<string>(str) }
+    InternalStringBlob(std::string&& str) :
+        str { std::forward<std::string>(str) }
     {
     }
 
@@ -42,7 +42,7 @@ struct InternalStringBlob final : Blob::Pimpl
         return str.size();
     }
 
-    string str;
+    std::string str;
 };
 
 struct InternalVectorBlob final : Blob::Pimpl
@@ -52,8 +52,8 @@ struct InternalVectorBlob final : Blob::Pimpl
     {
     }
 
-    InternalVectorBlob(vector<char>&& cont) :
-        container { std::forward<vector<char>>(cont) }
+    InternalVectorBlob(std::vector<char>&& cont) :
+        container { std::forward<std::vector<char>>(cont) }
     {
     }
 
@@ -67,7 +67,7 @@ struct InternalVectorBlob final : Blob::Pimpl
         return container.size();
     }
 
-    vector<char> container;
+    std::vector<char> container;
 };
 
 struct InternalBufferBlob final : Blob::Pimpl
@@ -125,14 +125,14 @@ static Blob::Pimpl* MakeInternalBlob(DynamicByteArray&& cont)
     return new InternalBufferBlob{ std::forward<DynamicByteArray>(cont) };
 }
 
-static Blob::Pimpl* MakeInternalBlob(vector<char>&& cont)
+static Blob::Pimpl* MakeInternalBlob(std::vector<char>&& cont)
 {
-    return new InternalVectorBlob{ std::forward<vector<char>>(cont) };
+    return new InternalVectorBlob{ std::forward<std::vector<char>>(cont) };
 }
 
-static Blob::Pimpl* MakeInternalBlob(string&& str)
+static Blob::Pimpl* MakeInternalBlob(std::string&& str)
 {
-    return new InternalStringBlob{ std::forward<string>(str) };
+    return new InternalStringBlob{ std::forward<std::string>(str) };
 }
 
 
@@ -194,17 +194,17 @@ Blob Blob::CreateStrongRef(DynamicByteArray&& cont)
     return blob;
 }
 
-Blob Blob::CreateStrongRef(vector<char>&& cont)
+Blob Blob::CreateStrongRef(std::vector<char>&& cont)
 {
     Blob blob;
-    blob.pimpl_ = MakeInternalBlob(std::forward<vector<char>>(cont));
+    blob.pimpl_ = MakeInternalBlob(std::forward<std::vector<char>>(cont));
     return blob;
 }
 
-Blob Blob::CreateStrongRef(string&& str)
+Blob Blob::CreateStrongRef(std::string&& str)
 {
     Blob blob;
-    blob.pimpl_ = MakeInternalBlob(std::forward<string>(str));
+    blob.pimpl_ = MakeInternalBlob(std::forward<std::string>(str));
     return blob;
 }
 
@@ -233,7 +233,7 @@ Blob Blob::CreateFromFile(const char* filename)
     return blob;
 }
 
-Blob Blob::CreateFromFile(const string& filename)
+Blob Blob::CreateFromFile(const std::string& filename)
 {
     return CreateFromFile(filename.c_str());
 }

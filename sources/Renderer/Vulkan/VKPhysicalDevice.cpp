@@ -13,9 +13,9 @@
 #include "../../Core/Vendor.h"
 #include "../../Core/Assertion.h"
 #include <LLGL/Constants.h>
-#include <LLGL/Container/String.h>
+#include <string>
 #include <cstring>
-#include <LLGL/Container/Set.h>
+#include <set>
 #include <limits>
 #include <algorithm>
 
@@ -32,14 +32,14 @@ static const char* g_requiredVulkanExtensions[] =
 };
 
 static bool CheckDeviceExtensionSupport(
-    VkPhysicalDevice                physicalDevice,
-    const char* const*              requiredExtensions,
-    std::size_t                     numRequiredExtensions,
-    vector<VkExtensionProperties>&  supportedExtensions)
+    VkPhysicalDevice                    physicalDevice,
+    const char* const*                  requiredExtensions,
+    std::size_t                         numRequiredExtensions,
+    std::vector<VkExtensionProperties>& supportedExtensions)
 {
     /* Check if device supports all required extensions */
     supportedExtensions = VKQueryDeviceExtensionProperties(physicalDevice);
-    set<string> unsupported(requiredExtensions, requiredExtensions + numRequiredExtensions);
+    std::set<std::string> unsupported(requiredExtensions, requiredExtensions + numRequiredExtensions);
 
     for (const VkExtensionProperties& ext : supportedExtensions)
     {
@@ -55,10 +55,10 @@ static bool CheckDeviceExtensionSupport(
 
 static bool IsPhysicalDeviceSuitable(
     VkPhysicalDevice                    physicalDevice,
-    vector<VkExtensionProperties>& supportedExtensions)
+    std::vector<VkExtensionProperties>& supportedExtensions)
 {
     /* Check if physical devices supports at least these extensions */
-    vector<VkExtensionProperties> extensions;
+    std::vector<VkExtensionProperties> extensions;
     bool suitable = CheckDeviceExtensionSupport(
         physicalDevice,
         g_requiredVulkanExtensions,
@@ -90,7 +90,7 @@ static bool IsPreferredDeviceVendor(DeviceVendor vendor, long preferredDeviceFla
 bool VKPhysicalDevice::PickPhysicalDevice(VkInstance instance, long preferredDeviceFlags)
 {
     /* Query all physical devices and pick suitable */
-    vector<VkPhysicalDevice> physicalDevices = VKQueryPhysicalDevices(instance);
+    std::vector<VkPhysicalDevice> physicalDevices = VKQueryPhysicalDevices(instance);
 
     auto TryPickPhysicalDevice = [this](VkPhysicalDevice device) -> bool
     {
@@ -153,7 +153,7 @@ void VKPhysicalDevice::LoadPhysicalDeviceWeakRef(VkPhysicalDevice physicalDevice
     QueryDeviceInfo();
 }
 
-static vector<Format> GetDefaultSupportedVKTextureFormats()
+static std::vector<Format> GetDefaultSupportedVKTextureFormats()
 {
     return
     {
@@ -180,7 +180,7 @@ static vector<Format> GetDefaultSupportedVKTextureFormats()
     };
 }
 
-static vector<Format> GetCompressedVKTextureFormatsS3TC()
+static std::vector<Format> GetCompressedVKTextureFormatsS3TC()
 {
     return
     {
@@ -192,7 +192,7 @@ static vector<Format> GetCompressedVKTextureFormatsS3TC()
     };
 }
 
-static vector<Format> GetCompressedVKTextureFormatsASTC()
+static std::vector<Format> GetCompressedVKTextureFormatsASTC()
 {
     return
     {
@@ -213,7 +213,7 @@ static vector<Format> GetCompressedVKTextureFormatsASTC()
     };
 }
 
-static vector<Format> GetCompressedVKTextureFormatsETC2()
+static std::vector<Format> GetCompressedVKTextureFormatsETC2()
 {
     return
     {
@@ -230,7 +230,7 @@ struct VKPipelineCacheID
     std::uint8_t  pipelineCacheUUID[VK_UUID_SIZE];  // VkPhysicalDeviceProperties::pipelineCacheUUID
 };
 
-static void GetVKPipelineCacheID(const VkPhysicalDeviceProperties& properties, vector<char>& outCacheID)
+static void GetVKPipelineCacheID(const VkPhysicalDeviceProperties& properties, std::vector<char>& outCacheID)
 {
     outCacheID.resize(sizeof(VKPipelineCacheID));
     VKPipelineCacheID* dst = reinterpret_cast<VKPipelineCacheID*>(outCacheID.data());
@@ -266,19 +266,19 @@ void VKPhysicalDevice::QueryRenderingCaps(RenderingCapabilities& caps)
 
     if (features.textureCompressionBC != VK_FALSE)
     {
-        const vector<Format> compressedFormatsS3TC = GetCompressedVKTextureFormatsS3TC();
+        const std::vector<Format> compressedFormatsS3TC = GetCompressedVKTextureFormatsS3TC();
         caps.textureFormats.insert(caps.textureFormats.end(), compressedFormatsS3TC.begin(), compressedFormatsS3TC.end());
     }
 
     if (features.textureCompressionASTC_LDR != VK_FALSE)
     {
-        const vector<Format> compressedFormatsASTC = GetCompressedVKTextureFormatsASTC();
+        const std::vector<Format> compressedFormatsASTC = GetCompressedVKTextureFormatsASTC();
         caps.textureFormats.insert(caps.textureFormats.end(), compressedFormatsASTC.begin(), compressedFormatsASTC.end());
     }
 
     if (features.textureCompressionETC2 != VK_FALSE)
     {
-        const vector<Format> compressedFormatsETC2 = GetCompressedVKTextureFormatsETC2();
+        const std::vector<Format> compressedFormatsETC2 = GetCompressedVKTextureFormatsETC2();
         caps.textureFormats.insert(caps.textureFormats.end(), compressedFormatsETC2.begin(), compressedFormatsETC2.end());
     }
 

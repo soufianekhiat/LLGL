@@ -46,8 +46,8 @@ class Example_ResourceBinding : public ExampleBase
         std::uint32_t           instance            = 0;
     };
 
-    vector<Model>          models;
-    vector<TexturedVertex> vertices;
+    std::vector<Model>          models;
+    std::vector<TexturedVertex> vertices;
 
 public:
 
@@ -67,7 +67,7 @@ public:
 
 private:
 
-    void LoadModel(const string& filename, const Gs::Vector3f& position, int colorMapIndex, const float scale = 1.0f)
+    void LoadModel(const std::string& filename, const Gs::Vector3f& position, int colorMapIndex, const float scale = 1.0f)
     {
         static std::uint32_t instanceCounter;
         Model mdl;

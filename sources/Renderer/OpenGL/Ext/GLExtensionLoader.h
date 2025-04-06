@@ -9,7 +9,7 @@
 #define LLGL_GL_EXTENSION_LOADER_H
 
 
-#include <LLGL/Container/Set.h>
+#include <set>
 
 
 namespace LLGL
@@ -26,10 +26,10 @@ bool LoadSupportedOpenGLExtensions(bool isCoreProfile, bool abortOnFailure = fal
 bool AreOpenGLExtensionsLoaded();
 
 // Returns the set of OpenGL extensions that are supported by the GL context that was active during the last call to LoadSupportedOpenGLExtensions().
-const set<const char*>& GetSupportedOpenGLExtensions();
+const std::set<const char*>& GetSupportedOpenGLExtensions();
 
 // Returns the set of OpenGL extensions that were loaded during the last call to LoadSupportedOpenGLExtensions().
-const set<const char*>& GetLoadedOpenGLExtensions();
+const std::set<const char*>& GetLoadedOpenGLExtensions();
 
 /* --- Common GL extensions --- */
 

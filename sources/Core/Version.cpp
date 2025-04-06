@@ -7,7 +7,7 @@
 
 #include <LLGL/Version.h>
 #include "VersionMacros.h"
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -42,9 +42,9 @@ LLGL_EXPORT unsigned GetID()
     return LLGL_VERSION_ID;
 }
 
-static string BuildVersionString()
+static std::string BuildVersionString()
 {
-    string s;
+    std::string s;
 
     s += std::to_string(GetMajor());
     s += '.';
@@ -70,7 +70,7 @@ static string BuildVersionString()
 
 LLGL_EXPORT const char* GetString()
 {
-    static string s = BuildVersionString();
+    static std::string s = BuildVersionString();
     return s.c_str();
 }
 

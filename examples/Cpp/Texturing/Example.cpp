@@ -122,7 +122,7 @@ public:
         pipeline = renderer->CreatePipelineState(pipelineDesc);
     }
 
-    void LoadUncompressedTexture(const string& filename)
+    void LoadUncompressedTexture(const std::string& filename)
     {
         // Load image data from file (using STBI library, see http://nothings.org/stb_image.h)
         ImageReader reader;
@@ -155,7 +155,7 @@ public:
         LLGL::Log::Printf("texture creation time: %f ms\n", texCreationTime * 1000.0);
     }
 
-    void LoadCompressedTexture(const string& filename)
+    void LoadCompressedTexture(const std::string& filename)
     {
         // Load DDS image
         DDSImageReader imageReader;
@@ -243,7 +243,7 @@ private:
                 resourceIndex = (resourceIndex + 1) % 4;
 #endif
 
-            const string spaces(30, ' ');
+            const std::string spaces(30, ' ');
             LLGL::Log::Printf(
                 "texture: %s%s\r",
                 resourceLabels[resourceIndex],

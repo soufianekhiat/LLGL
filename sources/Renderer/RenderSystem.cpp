@@ -22,7 +22,7 @@
 
 #include <LLGL/RenderSystem.h>
 #include "RenderSystemRegistry.h"
-#include <LLGL/Container/String.h>
+#include <string>
 #include <unordered_map>
 
 #include "../Core/PrintfUtils.h"
@@ -48,7 +48,7 @@ namespace LLGL
 struct RenderSystem::Pimpl
 {
     int                     rendererID  = 0;
-    string             name;
+    std::string             name;
     bool                    hasInfo     = false;
     RendererInfo            info;
     bool                    hasCaps     = false;
@@ -67,7 +67,7 @@ RenderSystem::~RenderSystem()
     delete pimpl_;
 }
 
-vector<string> RenderSystem::FindModules()
+std::vector<std::string> RenderSystem::FindModules()
 {
     #if LLGL_BUILD_STATIC_LIB
     return StaticModules::GetStaticModules();
@@ -231,7 +231,7 @@ Report& RenderSystem::GetMutableReport()
 
 void RenderSystem::Errorf(const char* format, ...)
 {
-    string report;
+    std::string report;
     LLGL_STRING_PRINTF(report, format);
     GetMutableReport().Reset(std::move(report), true);
 }

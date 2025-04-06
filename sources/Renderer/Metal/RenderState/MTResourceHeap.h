@@ -19,7 +19,7 @@
 #include "../Shader/MTShaderStage.h"
 #include "../../BindingIterator.h"
 #include "../../SegmentedBuffer.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 #include <functional>
 
 
@@ -166,7 +166,7 @@ class MTResourceHeap final : public ResourceHeap
 
     private:
 
-        static vector<MTResourceBinding> FilterAndSortMTBindingSlots(
+        static std::vector<MTResourceBinding> FilterAndSortMTBindingSlots(
             BindingDescriptorIterator&  bindingIter,
             ResourceType                resourceType,
             long                        affectedStage
@@ -185,7 +185,7 @@ class MTResourceHeap final : public ResourceHeap
         SegmentedBuffer                     heap_;                          // Buffer with resource binding information and stride (in bytes) per descriptor set
         std::uint32_t                       heapOffsetKernel_       = 0;    // Heap offset for kernel resources.
 
-        vector<id<MTLTexture>>         textureViews_;
+        std::vector<id<MTLTexture>>         textureViews_;
         std::uint32_t                       numTextureViewsPerSet_  = 0;
 
 };

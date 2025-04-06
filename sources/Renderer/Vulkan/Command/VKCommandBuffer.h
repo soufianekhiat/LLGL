@@ -19,7 +19,7 @@
 #include "../RenderState/VKStagingDescriptorSetPool.h"
 #include "../RenderState/VKDescriptorCache.h"
 #include "../RenderState/VKPipelineLayout.h"
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 namespace LLGL
@@ -211,7 +211,7 @@ class VKCommandBuffer final : public CommandBuffer
         TransformFeedbackState          xfbState_;
 
         #if 0//TODO: optimize usage of query pools
-        vector<VKQueryHeap*>            queryHeapsInFlight_;
+        std::vector<VKQueryHeap*>       queryHeapsInFlight_;
         std::size_t                     numQueryHeapsInFlight_                          = 0;
         #endif
 

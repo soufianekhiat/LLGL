@@ -12,15 +12,12 @@
 #include <LLGL/LLGL.h>
 #include <LLGL/Container/ArrayView.h>
 #include <Gauss/Gauss.h>
-#include <LLGL/Container/Vector.h>
+#include <vector>
 
 
 /*
  * Global helper structures
  */
-
-using LLGL::vector;
-using LLGL::string;
 
 struct TexturedVertex
 {
@@ -52,33 +49,33 @@ struct TriangleMesh
  */
 
 // Loads the vertices with position and normal from the specified Wavefront OBJ model file.
-vector<TexturedVertex> LoadObjModel(const string& filename);
+std::vector<TexturedVertex> LoadObjModel(const std::string& filename);
 
 // Loads the vertices with position and normal from the specified Wavefront OBJ model file.
-TriangleMesh LoadObjModel(vector<TexturedVertex>& vertices, const string& filename, unsigned verticesPerFace = 3);
+TriangleMesh LoadObjModel(std::vector<TexturedVertex>& vertices, const std::string& filename, unsigned verticesPerFace = 3);
 
 // Generates eight vertices for a unit cube.
-vector<Gs::Vector3f> GenerateCubeVertices();
+std::vector<Gs::Vector3f> GenerateCubeVertices();
 
 // Generates 36 indices for a unit cube of 8 vertices
 // (36 = 3 indices per triangle * 2 triangles per cube face * 6 faces).
-vector<std::uint32_t> GenerateCubeTriangleIndices();
+std::vector<std::uint32_t> GenerateCubeTriangleIndices();
 
 // Generates 24 vertices for a unit cube with texture coordinates.
-vector<TexturedVertex> GenerateTexturedCubeVertices();
+std::vector<TexturedVertex> GenerateTexturedCubeVertices();
 
 // Generates 36 indices for a unit cube of 24 vertices
-vector<std::uint32_t> GenerateTexturedCubeTriangleIndices();
+std::vector<std::uint32_t> GenerateTexturedCubeTriangleIndices();
 
 // Generates 24 indices for a unit cube of 8 vertices.
 // (24 = 4 indices per quad * 1 quad per cube face * 6 faces)
-vector<std::uint32_t> GenerateTexturedCubeQuadIndices(std::uint32_t numVertices, std::uint32_t firstVertex);
+std::vector<std::uint32_t> GenerateTexturedCubeQuadIndices(std::uint32_t numVertices, std::uint32_t firstVertex);
 
 // Generates tangent-space vertices from the specified list of textured vertices.
-vector<TangentSpaceVertex> GenerateTangentSpaceVertices(const LLGL::ArrayView<TexturedVertex>& vertices);
+std::vector<TangentSpaceVertex> GenerateTangentSpaceVertices(const LLGL::ArrayView<TexturedVertex>& vertices);
 
 // Generates tangent-space vertices (per quad) from the specified list of textured vertices.
-vector<TangentSpaceVertex> GenerateTangentSpaceQuadVertices(const LLGL::ArrayView<TexturedVertex>& vertices);
+std::vector<TangentSpaceVertex> GenerateTangentSpaceQuadVertices(const LLGL::ArrayView<TexturedVertex>& vertices);
 
 // Returns a point on the specified line segment that is the closest to the reference point.
 Gs::Vector3f ClosestPointOnLineSegment(const Gs::Vector3f& linePointA, const Gs::Vector3f& linePointB, const Gs::Vector3f& referencePoint);

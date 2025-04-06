@@ -11,8 +11,8 @@
 
 #include "../Platform/Module.h"
 #include <LLGL/RenderSystem.h>
-#include <LLGL/Container/Vector.h>
-#include <LLGL/Container/String.h>
+#include <vector>
+#include <string>
 #include <memory>
 
 
@@ -37,7 +37,7 @@ class RenderSystemModule
     public:
 
         // Returns a name list of available render system modules.
-        static vector<string> FindModules();
+        static std::vector<std::string> FindModules();
 
         // Loads the specified render system module. Returns null on failure.
         static RenderSystemModulePtr Load(const char* name, Report* outReport = nullptr);
@@ -49,13 +49,13 @@ class RenderSystemModule
         }
 
         // Returns the module name, e.g. "Direct3D12".
-        inline const string& GetName() const
+        inline const std::string& GetName() const
         {
             return name_;
         }
 
         // Returns the module filename, e.g. "LLGL_Direct3D12D.dll".
-        inline const string& GetFilename() const
+        inline const std::string& GetFilename() const
         {
             return filename_;
         }
@@ -90,14 +90,14 @@ class RenderSystemModule
 
         RenderSystemModule(
             const char*                 name,
-            string&&                    filename,
+            std::string&&               filename,
             std::unique_ptr<Module>&&   module
         );
 
     private:
 
-        string                      name_;
-        string                      filename_;
+        std::string                 name_;
+        std::string                 filename_;
         std::unique_ptr<Module>     module_;
         unsigned                    useCount_       = 0;
 

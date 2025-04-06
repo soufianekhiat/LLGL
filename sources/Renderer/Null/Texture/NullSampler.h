@@ -10,7 +10,7 @@
 
 
 #include <LLGL/Sampler.h>
-#include <LLGL/Container/String.h>
+#include <string>
 
 
 namespace LLGL
@@ -38,7 +38,7 @@ class NullSampler final : public Sampler
 
     private:
 
-        string label_;
+        std::string label_;
 
 };
 
